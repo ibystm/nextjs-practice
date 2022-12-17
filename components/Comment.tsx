@@ -1,6 +1,5 @@
 import {COMMENT} from "../types/Types"
 
-
 const Comment: React.FC<COMMENT> = ({id, name, body}) => {
   return (
     <li className="mx-10">

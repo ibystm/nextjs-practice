@@ -14,6 +14,8 @@ const axiosFetcher = async () => {
 const CommentPage: React.FC = () => {
   const {data: comments, error} = useSWR('commentsFetch', axiosFetcher)
 
+  if (error) return <span>Error!</span>
+
   return (
     <Layout title="Comment">
       <p className="text-4xl">comment page</p>
