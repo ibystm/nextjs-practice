@@ -7,9 +7,10 @@ import { getPage, initTestHelpers } from 'next-page-tester'
 initTestHelpers()
 
 const server = setupServer(
-  rest.get(
-    'https://jsonplaceholder.typicode.com/todos/?_limit=10',
-    (_, res, ctx) => {
+  rest.get('https://jsonplaceholder.typicode.com/todos/', (req, res, ctx) => {
+    const query = req.url.searchParams
+    const limit = query.get('_limit')
+    if (limit === '10') {
       return res(
         ctx.status(200),
         ctx.json([
@@ -28,7 +29,7 @@ const server = setupServer(
         ])
       )
     }
-  )
+  })
 )
 
 beforeAll(() => {
